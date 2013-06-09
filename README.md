@@ -9,15 +9,15 @@ CloneLocker
 
 CloneLocker is an attempt to attack this scenario:
 
-(a) there is a directory of files, being shared by users over some network
+1. there is a directory of files, being shared by users over some network
 
-(b) it is a bad thing if these users step on each others work
+2. it is a bad thing if these users step on each others work
 
-(c) the files are unwieldy and large (by the standards of your day)
+3. the files are unwieldy and large (by the standards of your day)
 
-(d) your LAN is slow for the file sizes, and/or people are working remotely
+4. your LAN is slow for the file sizes, and/or people are working remotely
 
-Were it not for (c) and (d), you'd just tell someone with this problem *"uh...get a faster network and centralize the files on a share"*.  But not everyone can do that, so there does exist an ecosystem of userspace network synchronization products.  These cost money, and I don't really know of any open source ones; it's a niche market.
+Were it not for 1 and 2, you'd just tell someone with this problem *"uh...get a faster network and centralize the files on a share"*.  But not everyone can do that, so there does exist an ecosystem of userspace network synchronization products.  These cost money, and I don't really know of any open source ones; it's a niche market.
 
 But let us say you aren't going to defer to an existing product, and want to roll-your-own solution.  You'd need a monitor process running on each machine that would impose artificial read/write exclusions on the local filesystem, but based on what other users on the network are doing.  So let's say user A takes a read lock on a file on his disk -- then the monitor process would communicate that fact to user B's machine.  Although user B is not intentionally running any program accessing the clone of the file on his disk, his monitor process would grab the appropriate lock on it anyway...as a proxy for user A, for the duration of A's interest in the file.
 
@@ -37,10 +37,10 @@ At first I wanted to keep the user mode code "lean and mean", just a small clien
 
 In summary I'll say:
 
-(a) *"Kids, don't try this at home."*
+1. *"Kids, don't try this at home."*
 
-(b) Do not try and use the DDK to build userspace apps.
+2. Do not try and use the DDK to build userspace apps.
 
-(c) Buy faster network equipment.
+3. Buy faster network equipment.
 
-(d) [Join the revolution against software complexity](https://github.com/hostilefork/r3-hf/wiki/StackOverflow-Chat-FAQ).  This style of coding has to stop.
+4. [Join the revolution against software complexity](https://github.com/hostilefork/r3-hf/wiki/StackOverflow-Chat-FAQ).  This style of coding has to stop.
