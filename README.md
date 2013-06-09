@@ -1,7 +1,7 @@
 CloneLocker
 ===========
 
-*(Disclaimer: THIS DOES NOT WORK (as of 9-Jun-2013).  It is a splattering of exploratory testing that was pushed to GitHub after a proof-of-concept study went haywire.  The present state evokes a word a friend told me: "copypasta".  That's where snippets of sample code are stuck together without general coherence.  I share it in this catastrophic state merely so that it may be looked at, and options explored for how a development direction might be taken.  That is **if** there is interest in that advancement rather than abandonment.)*
+*(Disclaimer: THIS DOES NOT WORK (as of 9-Jun-2013).  It is a splattering of exploratory testing that was pushed to GitHub after a proof-of-concept study went haywire.  The present state evokes a word a friend told me: "copypasta".  That's where snippets of sample code are stuck together without general coherence.  I share it in this catastrophic state merely so that it may be looked at, and options explored for how a development direction might be taken.  That is IF there is interest in that advancement rather than abandonment.)*
 
 ![CloneLocker](http://metaeducation.com/media/shared/respectech/clonelocker.png)
 
