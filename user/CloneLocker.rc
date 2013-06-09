@@ -1,0 +1,19 @@
+#include <windows.h>
+
+/* Used to #include <ntverp.h>, 
+ * but that puts "Windows (R) Win 7 DDK provider" on everything. */
+ */ 
+
+#define VER_FILETYPE                VFT_APP
+#define VER_FILESUBTYPE             VFT2_UNKNOWN
+#define VER_FILEDESCRIPTION_STR     "Network CloneLocker"
+#define VER_INTERNALNAME_STR        "CloneLocker.exe"
+#define VER_ORIGINALFILENAME_STR    "CloneLocker.exe"
+
+/* This sets the application's icon */
+
+#define IDI_CLONELOCKER 101
+
+IDI_CLONELOCKER ICON "lock-icon.ico"
+
+#include "../clonelocker.ver"

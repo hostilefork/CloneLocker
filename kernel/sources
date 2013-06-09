@@ -1,0 +1,17 @@
+TARGETNAME = CloneLockerDriver
+TARGETTYPE = DRIVER
+DRIVERTYPE = FS
+
+
+INCLUDES = \
+	$(INCLUDES); \
+	..\shared\include
+
+TARGETLIBS = \
+	$(TARGETLIBS) \
+	$(IFSKIT_LIB_PATH)\fltMgr.lib
+
+SOURCES = \
+	CloneLockerDriver.c \
+	CloneLockerDriver.rc
+
