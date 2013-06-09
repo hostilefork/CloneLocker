@@ -9,10 +9,10 @@ CloneLocker
 
 CloneLocker is an attempt to attack this scenario:
 
-    (a) there is a directory of files, being shared by users over some network
-    (b) it is a bad thing if these users step on each others work
-    (c) the files are unwieldy and large (by the standards of your day)
-    (d) your LAN is slow for the file sizes, and/or people are working remotely
+(a) there is a directory of files, being shared by users over some network
+(b) it is a bad thing if these users step on each others work
+(c) the files are unwieldy and large (by the standards of your day)
+(d) your LAN is slow for the file sizes, and/or people are working remotely
 
 Were it not for (c) and (d), you'd just tell someone with this problem *"uh...get a faster network and centralize the files on a share"*.  But not everyone can do that, so there does exist an ecosystem of userspace network synchronization products.  These cost money, and I don't really know of any open source ones; it's a niche market.
 
@@ -22,7 +22,7 @@ Okay, but how do you write such a thing for Windows (if you're not Microsoft?)  
 
 It is, and strangely enough the seemingly elusive hooking doesn't turn out to be especially hard:
 
-[miniFilter drivers](http://msdn.microsoft.com/en-us/library/windows/hardware/ff541591(v=vs.85).aspx)
+[miniFilter drivers](http://msdn.microsoft.com/en-us/library/windows/hardware/ff541591)
 
 Really all you need is a kernel mode component that passes up the filenames being looked at prior to allowing access. A timer and polling period may be necessary in the user mode process, in case the client who held the lock crashed or had the power plug pulled.  There are some nuisances about installing with elevated privileges, and having cryptographically signed certificates you pay MS for or tell your users to put their machines into "test mode".  I got through all that bit and got cocky.
 
@@ -34,7 +34,7 @@ At first I wanted to keep the user mode code "lean and mean", just a small clien
 
 In summary I'll say:
 
-    (a) *"Kids, don't try this at home."*
-    (b) Do not try and use the DDK to build userspace apps.
-    (c) Buy faster network equipment.
-    (d) [Join the revolution against software complexity](https://github.com/hostilefork/r3-hf/wiki/StackOverflow-Chat-FAQ).  This style of coding has to stop.
+(a) *"Kids, don't try this at home."*
+(b) Do not try and use the DDK to build userspace apps.
+(c) Buy faster network equipment.
+(d) [Join the revolution against software complexity](https://github.com/hostilefork/r3-hf/wiki/StackOverflow-Chat-FAQ).  This style of coding has to stop.
