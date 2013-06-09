@@ -17,7 +17,7 @@ CloneLocker is an attempt to attack this scenario:
 
 4. your LAN is slow for the file sizes, and/or people are working remotely
 
-Were it not for 1 and 2, you'd just tell someone with this problem *"uh...get a faster network and centralize the files on a share"*.  But not everyone can do that, so there does exist an ecosystem of userspace network synchronization products.  These cost money, and I don't really know of any open source ones; it's a niche market.
+Were it not for 3 and 4, you'd just tell someone with this problem *"uh...get a faster network and centralize the files on a share"*.  But not everyone can do that, so there does exist an ecosystem of userspace network synchronization products.  These cost money, and I don't really know of any open source ones; it's a niche market.
 
 But let us say you aren't going to defer to an existing product, and want to roll-your-own solution.  You'd need a monitor process running on each machine that would impose artificial read/write exclusions on the local filesystem, but based on what other users on the network are doing.  So let's say user A takes a read lock on a file on his disk -- then the monitor process would communicate that fact to user B's machine.  Although user B is not intentionally running any program accessing the clone of the file on his disk, his monitor process would grab the appropriate lock on it anyway...as a proxy for user A, for the duration of A's interest in the file.
 
