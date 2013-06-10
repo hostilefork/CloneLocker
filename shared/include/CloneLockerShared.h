@@ -75,21 +75,22 @@ typedef struct _COMMAND_MESSAGE {
 typedef struct _LOCKER_NOTIFICATION {
 
 	/*
-	 * Contents of a UNICODE_STRING
-	 * But holds character data in buffer user mode code can read,
-	 * rather than as a PWSTR to kernel memory data
-	 * no need for MaxLength as this is read only
+	 * Was supposed to be simply a boolean indicating whether the request
+	 * bubbling up out of the driver is a CreateFile call or a cleanup
+	 * when a file is no longer used.  Keeping everything close to the
+	 * DDK scanner.c example in the beginning and not messing with
+	 * alignment problems, hence these things are kept as ULONG until
+	 * I understand more about what's allowed or disallowed.
 	 */
 	ULONG IsCreate;
 	
 	/*
 	 * Length in BYTES (not characters!) of the string.  This does not count
 	 * the null terminator.  Note that this is kind of following the same
-	 * pattern as UNICODE_STRING:
-	 *
-	 * But there is no need for MaxLength as
+	 * pattern as UNICODE_STRING, but there is no need for MaxLength as
+	 * this is read-only.
 	 */
-    ULONG Length;
+	 ULONG Length;
 
 	/*
 	 * Using a fixed-sized buffer for a filename is a terrible idea.  However,
