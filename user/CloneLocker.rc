@@ -1,7 +1,8 @@
 #include <windows.h>
 
-/* Used to #include <ntverp.h>, 
- * but that puts "Windows (R) Win 7 DDK provider" on everything. */
+/* 
+ * Used to #include <ntverp.h>, 
+ * but that puts "Windows (R) Win 7 DDK provider" on everything
  */ 
 
 #define VER_FILETYPE                VFT_APP

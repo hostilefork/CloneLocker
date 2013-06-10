@@ -40,9 +40,12 @@
 
 // Safe string routines, which replace a lot of deprecated routines that
 // dontuse.h removes from the API
+#include <strsafe.h>
+#include <dontuse.h>
+
+// Safe string routines, which replace a lot of deprecated routines
 // (This is the user mode version, ntstrsafe.h is for kernel mode)
 #include <StrSafe.h>
-#include <dontuse.h>
 
 // Leak detecting replacements of malloc/free
 // (not currently used)

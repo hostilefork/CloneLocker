@@ -4,6 +4,11 @@ UMTYPE = windows
 UMENTRY = winmain
 USE_MSVCRT = 1
 
+# http://stackoverflow.com/questions/16975728/including-c-headers-in-user-mode-programs-built-with-nt-ddk
+
+386_STDCALL = 0
+USE_STL = 1
+USE_NATIVE_EH = 1
 
 C_DEFINES = $(C_DEFINES) -DUNICODE -D_UNICODE
 
