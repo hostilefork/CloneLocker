@@ -1,0 +1,103 @@
+;;;
+;;; CloneLocker
+;;;
+;;;
+;;; Copyright (c) 2013 HostileFork.com
+;;;
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = "ActivityMonitor"                         ;This is determined by the work this filter driver does
+ClassGuid   = {b86dff51-a31e-4bac-b3cf-e8cfe75c9fc2}    ;This value is determined by the Class
+Provider    = %Hostilefork%
+DriverVer   = 06/16/2007,1.0.0.0
+CatalogFile = CloneLocker.cat
+
+
+[DestinationDirs]
+DefaultDestDir          = 12
+CloneLocker.DriverFiles     = 12            ;%windir%\system32\drivers
+CloneLocker.UserFiles       = 10,FltMgr     ;%windir%\FltMgr
+
+;;
+;; Default install sections
+;;
+
+[DefaultInstall]
+OptionDesc          = %ServiceDescription%
+CopyFiles           = CloneLocker.DriverFiles, CloneLocker.UserFiles
+
+[DefaultInstall.Services]
+AddService          = %ServiceName%,,CloneLocker.Service
+
+;;
+;; Default uninstall sections
+;;
+
+[DefaultUninstall]
+DelFiles            = CloneLocker.DriverFiles, CloneLocker.UserFiles
+
+
+
+[DefaultUninstall.Services]
+DelService = CloneLocker,0x200      ;Ensure service is stopped before deleting
+
+;
+; Services Section
+;
+
+[Scanner.Service]
+DisplayName      = %ServiceName%
+Description      = %ServiceDescription%
+ServiceBinary    = %12%\%DriverName%.sys        ;%windir%\system32\drivers\
+Dependencies     = "FltMgr"
+ServiceType      = 2                            ;SERVICE_FILE_SYSTEM_DRIVER
+StartType        = 3                            ;SERVICE_DEMAND_START
+ErrorControl     = 1                            ;SERVICE_ERROR_NORMAL
+LoadOrderGroup   = "FSFilter Content Screener"
+AddReg           = CloneLocker.AddRegistry
+
+;
+; Registry Modifications
+;
+
+[CloneLocker.AddRegistry]
+HKR,"Instances","DefaultInstance",0x00000000,%DefaultInstance%
+HKR,"Instances\"%Instance1.Name%,"Altitude",0x00000000,%Instance1.Altitude%
+HKR,"Instances\"%Instance1.Name%,"Flags",0x00010001,%Instance1.Flags%
+
+;
+; Copy Files
+;
+
+[CloneLocker.DriverFiles]
+%DriverName%.sys
+
+[CloneLocker.UserFiles]
+%UserAppName%.exe
+
+[SourceDisksFiles]
+CloneLockerDriver.sys = 1,,
+CloneLocker.exe = 1,,
+
+[SourceDisksNames]
+1 = %DiskId1%,,,
+
+;;
+;; String Section
+;;
+
+[Strings]
+HostileFork             = "HostileFork.com"
+ServiceDescription      = "CloneLocker mini-filter driver"
+ServiceName             = "CloneLocker"
+DriverName              = "CloneLockerDriver"
+UserAppName             = "CloneLocker"
+DiskId1                 = "CloneLocker Device Installation Disk"
+
+;Instances specific information.
+DefaultInstance         = "CloneLocker Instance"
+Instance1.Name          = "CloneLocker Instance"
+Instance1.Altitude      = "265000"
+Instance1.Flags         = 0x0          ; Allow all attachments
+
